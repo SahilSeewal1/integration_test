@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<artifactId>spring-boot-starter-bom</artifactId>
+		<groupId>com.kmbl.buildertools</groupId>
+		<version>0.0.11</version>
+	</parent>
+
+	<groupId>com.kotak</groupId>
+	<artifactId>ra.uams</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>RA_UAMS</name>
+	<description>User Access Management Service</description>
+	<properties>
+		<java.version>17</java.version>
+		<commons-logging.version>1.2</commons-logging.version>
+		<spring-cloud-aws.version>3.0.1</spring-cloud-aws.version>
+		<amazon-awssdk-kms.verion>2.20.63</amazon-awssdk-kms.verion>
+		<amazon-awssdk-dynamodb.version>1.12.566</amazon-awssdk-dynamodb.version>
+		<jakarta-persistence-api.version>3.1.0</jakarta-persistence-api.version>
+		<mockito-core.version>5.6.0</mockito-core.version>
+		<mockito-junit-jupiter.version>2.19.0</mockito-junit-jupiter.version>
+		<mockito-inline.version>3.11.2</mockito-inline.version>
+		<resilience.version>2.1.0</resilience.version>
+		<jacoco-maven-plugin.version>0.8.11</jacoco-maven-plugin.version>
+		<maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
+		<spring-common-security.version>1.0.1</spring-common-security.version>
+		<guava.version>32.1.0-android</guava.version>
+		<jackson-bom.version>2.16.1</jackson-bom.version>
+		<java-jwt.version>4.4.0</java-jwt.version>
+		<spring-framework.version>6.1.6</spring-framework.version>
+		<io.netty.http.version>4.1.108.final</io.netty.http.version>
+		<shedlock-spring.version>5.10.0</shedlock-spring.version>
+		<shedlock-provider-dynamodb2.version>5.10.2</shedlock-provider-dynamodb2.version>
+	</properties>
+
+	<distributionManagement>
+		<repository>
+			<id>Collections-Feed</id>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<url>https://pkgs.dev.azure.com/kmbl-devops/Collection/_packaging/Collections-Feed/maven/v1</url>
+		</repository>
+	</distributionManagement>
+
+	<repositories>
+
+		<repository>
+			<id>Collections-Feed</id>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<url>https://pkgs.dev.azure.com/kmbl-devops/Collection/_packaging/Collections-Feed/maven/v1</url>
+		</repository>
+		<repository>
+			<id>DevOps-BuilderTools-Feed</id>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<url>https://pkgs.dev.azure.com/kmbl-devops/_packaging/DevOps-BuilderTools-Feed/maven/v1</url>
+		</repository>
+	</repositories>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>io.awspring.cloud</groupId>
+				<artifactId>spring-cloud-aws-dependencies</artifactId>
+				<version>${spring-cloud-aws.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.testcontainers</groupId>
+				<artifactId>testcontainers-bom</artifactId>
+				<version>1.18.3</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>software.amazon.awssdk</groupId>
+			<artifactId>kms</artifactId>
+			<version>${amazon-awssdk-kms.verion}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>io.netty</groupId>
+					<artifactId>netty-codec-http</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>io.netty</groupId>
+			<artifactId>netty-codec-http</artifactId>
+			<version>${io.netty.http.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-dynamodb -->
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk-dynamodb</artifactId>
+			<version>${amazon-awssdk-dynamodb.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>${mockito-core.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-junit-jupiter</artifactId>
+			<version>${mockito-junit-jupiter.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<artifactId>jackson-databind-nullable</artifactId>
+			<groupId>org.openapitools</groupId>
+		</dependency>
+
+		<!-- Spring boot api-docs-->
+		<dependency>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<groupId>org.springdoc</groupId>
+		</dependency>
+		<dependency>
+			<artifactId>swagger-annotations</artifactId>
+			<groupId>io.swagger</groupId>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>${commons-logging.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-inline</artifactId>
+			<version>${mockito-inline.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/io.github.resilience4j/resilience4j-spring-boot3 -->
+		<dependency>
+			<groupId>io.github.resilience4j</groupId>
+			<artifactId>resilience4j-spring-boot3</artifactId>
+			<version>${resilience.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
+
+		<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-actuator</artifactId>
+			</dependency>
+
+		<dependency>
+			<groupId>com.auth0</groupId>
+			<artifactId>java-jwt</artifactId>
+			<version>${java-jwt.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.kmbl.buildertools</groupId>
+			<artifactId>spring-common-security</artifactId>
+			<version>${spring-common-security.version}</version>
+
+			<exclusions>
+				<exclusion>
+					<groupId>joda-time</groupId>
+					<artifactId>joda-time</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.google.errorprone</groupId>
+					<artifactId>error_prone_annotations</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.httpcomponents</groupId>
+					<artifactId>httpclient</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.checkerframework</groupId>
+					<artifactId>checker-qual</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.google.guava</groupId>
+					<artifactId>guava</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>${guava.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.checkerframework</groupId>
+					<artifactId>checker-qual</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.google.errorprone</groupId>
+					<artifactId>error_prone_annotations</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>net.javacrumbs.shedlock</groupId>
+			<artifactId>shedlock-spring</artifactId>
+			<version>${shedlock-spring.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>net.javacrumbs.shedlock</groupId>
+					<artifactId>shedlock-core</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>net.javacrumbs.shedlock</groupId>
+			<artifactId>shedlock-provider-dynamodb2</artifactId>
+			<version>${shedlock-provider-dynamodb2.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.testcontainers</groupId>
+			<artifactId>localstack</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-testcontainers</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.testcontainers</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.jacoco</groupId>
+					<artifactId>jacoco-maven-plugin</artifactId>
+					<version>${jacoco-maven-plugin.version}</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+            <!-- Google check style plugin -->
+            			<plugin>
+            				<groupId>org.apache.maven.plugins</groupId>
+            				<artifactId>maven-checkstyle-plugin</artifactId>
+            				<version>${maven-checkstyle-plugin.version}</version>
+            				<dependencies>
+            					<dependency>
+            						<groupId>com.puppycrawl.tools</groupId>
+            						<artifactId>checkstyle</artifactId>
+            						<version>10.12.4</version>
+            					</dependency>
+            					<dependency>
+            						<groupId>org.apache.maven.shared</groupId>
+            						<artifactId>maven-shared-resources</artifactId>
+            						<version>5</version>
+            					</dependency>
+            				</dependencies>
+            				<configuration>
+            					<configLocation>${project.basedir}/google_checks.xml</configLocation>
+            					<consoleOutput>true</consoleOutput>
+            					<violationSeverity>warning</violationSeverity>
+            					<failsOnError>true</failsOnError>
+            					<linkXRef>false</linkXRef>
+            				</configuration>
+            				<executions>
+            					<execution>
+            						<id>validate</id>
+            						<phase>validate</phase>
+            						<goals>
+            							<goal>check</goal>
+            						</goals>
+            					</execution>
+            				</executions>
+            			</plugin>
+            <plugin>
+
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+
+			<!-- Open API Generator - Spring Boot 3 classes -->
+			<plugin>
+				<artifactId>openapi-generator-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<configuration>
+							<addCompileSourceRoot>true</addCompileSourceRoot>
+							<configOptions>
+								<useTags>true</useTags>
+								<delegatePattern>true</delegatePattern>
+								<interfaceOnly>true</interfaceOnly>
+								<skipDefaultInterface>true</skipDefaultInterface>
+								<useSpringBoot3>true</useSpringBoot3>
+								<useSpringController>true</useSpringController>
+							</configOptions>
+							<generateApiDocumentation>false</generateApiDocumentation>
+							<generateApiTests>false</generateApiTests>
+							<generateModelDocumentation>false</generateModelDocumentation>
+							<generateModelTests>false</generateModelTests>
+							<generateSupportingFiles>false</generateSupportingFiles>
+							<generatorName>spring</generatorName>
+							<inputSpec>${project.basedir}/src/main/resources/openapi/user_access_management.yml</inputSpec>
+							<templateDirectory>${project.basedir}/src/main/resources/openapi/template</templateDirectory>
+							<apiPackage>${project.groupId}.ra.uams.api</apiPackage>
+							<modelPackage>${project.groupId}.ra.uams.model</modelPackage>
+							<output>${project.build.directory}/generated-sources</output>
+						</configuration>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<id>generate-spring-server</id>
+					</execution>
+				</executions>
+				<groupId>org.openapitools</groupId>
+			</plugin>
+
+			<!-- Maven Enforcer plugin - guardrails -->
+			<plugin>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<executions>
+					<execution>
+						<configuration>
+							<rules>
+								<banDuplicatePomDependencyVersions/>
+								<banDynamicVersions>
+									<allowSnapshots>false</allowSnapshots>
+									<excludedScopes/>
+								</banDynamicVersions>
+								<bannedDependencies/>
+								<bannedPlugins/>
+								<dependencyConvergence>
+									<uniqueVersions>true</uniqueVersions>
+								</dependencyConvergence>
+								<requireJavaVersion>
+									<version>[${java.version},)</version>
+								</requireJavaVersion>
+								<requireMavenVersion>
+									<version>[${maven.compiler.plugin},)</version>
+								</requireMavenVersion>
+							</rules>
+						</configuration>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+						<id>enforce-java</id>
+					</execution>
+				</executions>
+				<groupId>org.apache.maven.plugins</groupId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+		<finalName>${project.name}_${project.version}</finalName>
+	</build>
+</project>

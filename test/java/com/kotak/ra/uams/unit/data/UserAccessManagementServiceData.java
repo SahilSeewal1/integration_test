@@ -1,0 +1,159 @@
+package com.kotak.ra.uams.unit.data;
+
+import static com.kotak.ra.uams.constant.DbConstants.ID_DELIMITER;
+
+import com.kotak.ra.uams.constant.SessionStatus;
+import com.kotak.ra.uams.entity.UserDetails;
+import com.kotak.ra.uams.model.AccessTokenAndUserId;
+import com.kotak.ra.uams.model.AccessTokenDetails;
+import com.kotak.ra.uams.model.AccountStatus;
+import com.kotak.ra.uams.model.AuthenticatedUserInfo;
+import com.kotak.ra.uams.model.LoginRequest;
+import com.kotak.ra.uams.model.TokensDetail;
+import com.kotak.ra.uams.model.UserInfo;
+import java.util.List;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
+/** The type User access management service data. */
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+public final class UserAccessManagementServiceData {
+  /** The constant TOKEN_REQUEST_OBJ. */
+  public static final LoginRequest TOKEN_REQUEST_OBJ =
+      new LoginRequest(
+          "9JVpQMZ5DpMwocQPq4bbtbiznXGhekdjhOirKL3VRWt5ijvJbJogliHPscNBtaxXK9zpUC3Pu04yuxasD25nTSxU9KWydgyQlBYeGJcBKfNyM4u44LZ8PVfojS3SPxEL",
+          "f9086f52-4341-4459-b721-e0774f006a49",
+          "19kungvqs1dmi2q335nfjgta9m",
+          "https://abc.com/",
+          "sample-collection.auth.us-east-1.amazoncognito.com");
+
+  /** The constant TOKENS_RESPONSE_BODY. */
+  public static final String TOKENS_RESPONSE_BODY =
+      "{\"id_token\":\"eyJraWQiOiIrYmptdzgrbk1MYTRoMHI1S083cEIwZTdmXC9BVkVlRHZwTjVzeU44Y2xObz0iLCJhbGciOiJSUzI1NiJ9.eyJhdF9oYXNoIjoiUTVZc2VrOFpwTWlkZzl1ejhxVnk3USIsInN1YiI6ImVmZjk4NzNiLWZhYzMtNGI2YS05YTY0LTJkYjViODU3ZjJlNCIsImNvZ25pdG86Z3JvdXBzIjpbIlhZWiIsIlVTRVIiXSwiZW1haWxfdmVyaWZpZWQiOnRydWUsImN1c3RvbTpjdXN0b21WYXIiOiJYWVoiLCJjb2duaXRvOnByZWZlcnJlZF9yb2xlIjoiYXJuOmF3czppYW06OjAwNDQwNDY0MTg0NTpyb2xlXC9hbXBsaWZ5LWxvZ2luLWxhbWJkYS1iYWViYTgxOSIsImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbVwvdXMtZWFzdC0xX2U0ekw0MHA2TiIsImNvZ25pdG86dXNlcm5hbWUiOiJlZmY5ODczYi1mYWMzLTRiNmEtOWE2NC0yZGI1Yjg1N2YyZTQiLCJvcmlnaW5fanRpIjoiMGNlZTNlYzctZDZkOS00ZDllLTg2MzYtNDAzMDA2OWQ0ZjNhIiwiY29nbml0bzpyb2xlcyI6WyJhcm46YXdzOmlhbTo6MDA0NDA0NjQxODQ1OnJvbGVcL2FtcGxpZnktbG9naW4tbGFtYmRhLWJhZWJhODE5Il0sImF1ZCI6IjE5a3VuZ3ZxczFkbWkycTMzNW5mamd0YTdsIiwiZXZlbnRfaWQiOiI3ZmQ4N2IxNy1lMDdmLTRlM2QtOGZjZC01MzFlZGJlZTFlMmMiLCJ0b2tlbl91c2UiOiJpZCIsImF1dGhfdGltZSI6MTY5NzgyMDQ5OSwiY3VzdG9tOnVzZXItaWQiOiJLTUJMMTIzIiwiZXhwIjoxNjk3ODI0MDk5LCJpYXQiOjE2OTc4MjA0OTksImp0aSI6IjFhYjllY2RlLWJhZjYtNDJmMC1iMzZkLTRjNWQ3MDZjM2ExZCIsImVtYWlsIjoic2FoaWwuc2Vld2FsQGtvdGFrLmNvbSJ9.K9IVyiKou67y7ON0hveu4d3Kh0Ywp1X-lWVkvaAP4qEw6tevwhsjzBoiLmeadfY9yXqzSwIDQqEAhhqWnVejMdsgxhu3hR3aBx3MibdFXnIr7lbZp-Faj4KNUNyy3qnTFvLoNRVA-d04nB9iQsVrIUBiS6uCPyLiCJ_iY30PmnSi1Ku8Up6EFnNLNDcPyNYo6A4YAsEBslJcY_GbBDc-Pz5jgRAU7SIxgUi2ScdYhYz5BpjKgOsQEoNavZkVvgEXnOys9BSb1hFnTdqLmM9gyzEu2Ic9FSXyRBA9qaBCuw86aEOqHxzeJKxasDeNC1juaO44WvnUzM55ioe6-fqZbQ\",\"access_token\":\"eyJraWQiOiIrdE5vaUdsTnVJSHdtRXhBUEFMRTVHdlJuQ29JeHk2Tm5cL0s0MGtKa2VjQT0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJlZmY5ODczYi1mYWMzLTRiNmEtOWE2NC0yZGI1Yjg1N2YyZTQiLCJjb2duaXRvOmdyb3VwcyI6WyJYWVoiLCJVU0VSIl0sImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbVwvdXMtZWFzdC0xX2U0ekw0MHA2TiIsInZlcnNpb24iOjIsImNsaWVudF9pZCI6IjE5a3VuZ3ZxczFkbWkycTMzNW5mamd0YTdsIiwib3JpZ2luX2p0aSI6IjBjZWUzZWM3LWQ2ZDktNGQ5ZS04NjM2LTQwMzAwNjlkNGYzYSIsImV2ZW50X2lkIjoiN2ZkODdiMTctZTA3Zi00ZTNkLThmY2QtNTMxZWRiZWUxZTJjIiwidG9rZW5fdXNlIjoiYWNjZXNzIiwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSIsImF1dGhfdGltZSI6MTY5NzgyMDQ5OSwiZXhwIjoxNjk3ODI0MDk5LCJpYXQiOjE2OTc4MjA0OTksImp0aSI6IjI0M2JmNWJiLWVkNjYtNDA5Yy04YWQwLTZjMDU4NDRiZWE3OCIsInVzZXJuYW1lIjoiZWZmOTg3M2ItZmFjMy00YjZhLTlhNjQtMmRiNWI4NTdmMmU0In0.Dg2vjPaDCyJyTRBJeVgF1Yj0Nq5317Z5D4GgclHLF59t93-g2da6WZXd0epv2OdnEblQqjkkvfzv0UfDfWr-nS075hTFQbM4uWW-p-50aOreKPXcDFDnwCzMFLWvzyk_Om-y6XlC95T5ff3d9LWJcfNenrWYKmk8i6jlTfNYC7oX-apUKmcxVvXnCWLU7jwaobAASKxBhPzao7tk5xRglxYNC_0sD379ZYuxmhNclaBPsaDqCxJdvfLj7I8UurvyG_vclf9nWlLj2vXpCfWa-msmBSox7v6pW-5Tr5r2SPNDxsOtLbol6dA6-q5JTt4pVefjkIygqd3SBrxD3vywtA\",\"refresh_token\":\"eyJjdHkiOiJKV1QiLCJlbmMiOiJBMjU2R0NNIiwiYWxnIjoiUlNBLU9BRVAifQ.IUdVhz8Z5Oh6BxUnSJFyaVFqT_QYzuHL8g8tr0y0IwCarG4qzAVQhR3Anp2FRAiX4F9XjDM85umWCWNeYtDfV238w_Nsjm9TpZtXNeHm3d27vaaQwnl48fmA514rE5QF_ublJweUy1L1WNlELGsCp7Jav36nRjAl00OX5m7urYEhNL_nBGRkRJlQhi15mK4-d1J_tOtZSWUtrm108dfuthewidwLx_ZewixOAYFUWeCfQvleGrZGNoe7hF9aXUAVuhnrPhiNT0UwpNM4uPgMeq-li8DTgzR6oPCfXYfzDseZI6SmWsSQ-BNysKEsWUuSXBjnDvs22ozdNNyiYEq-fg.P1lQxen63kTpEoxQ.xkvJeQD0Nmjdx3Llm60ZXCCNcew_IYUVjlz-vyd-qA22XvNNgnRz2paqwcsFWywT-UwyDnDhV7qGQxi-SwR25Osos8eJiJzzoFM6HYVWPkM0bU7RvVxu0WoUKzKHQeAQOxTemCK5v-OuyQCFcdl03fXc-Ny8U3ykAyw7ssRW8rlruGC6ssZIQsQ-8K0t2097SScUAztJom94O63FAIN2l8N3SEUkOsQVhUETIOTOg15bQwCZBYkxhhWwZyzC6qbvi64EEuFrAHCC3V2hMnPK8m2s2NQFYZaUt59XNTvkKtb0Rza0ZGE6LT4UNxYW8yLMSBZ2A0TLmio1EIy8y7Daau0zFlV9DYtCuv3NytOJ27_Bv-rlVQ4VjRDvaSEf_YJVoRRea2eOdW0bgJFbUQJFlCDj2NLgMJlHA7Qv3J7x_su9ODpCmH9a4zZhFzKluGJJjBkRDRQw5jYaRx2Raa0Le_wdNr8bZMsmNLT1YVxlelv1Gk4HJyBzbBxenKlmOPzA3xrfiuzQ67wE0N1crAWiVULzyCB6BBxBivETEz3_DLjSOoGV_j97BOy20mc4jnVm11yWvQ5Ryn1hC0SQ5R10il0N6au3Fz3tPdqezSHzQMdgCkvILrrs2wHjlGznn6dVjTmSyAPuJMjkwfpy74xvShPfM7amvfog9Bb5xqVepT3SulvqdQlLmGxkADW2QkwPIghVzoWq6Mz21P2G6SAU1zmyo7RmDDnYG7PlqjqcI6HCGk-sxx4tqUqWj1JzkSDhphruGZ31H90EdqhyO4xaTwKkB3oOkjH6s8xEMotCVLnh7mKgNwiE9hvysV2Jpy1i-eUCpkqtlQAsE42sOZuLCMfz7cjJucw2B6uOzWSHMvFR_qpVAtXT7iofrwRJuPQIGrSELPnCjCJHg_JaS3vsgQLelEqdgghWn-GIR2ioLEjFLyJ5I07jxHBCqwTU7uRRTJJvs-SWqHj3M3zDcD78nVBsRcdt0XCqAigWMDIKp7ZjWjXd7wt3qPqeZuyAssnQ8kQUYugbpHVpKHAwRiEp72RaCOCqk_qFhQJdBI9rsv92ru4ONTGSyyaNpFdbNsUMXi9nRYeqMbMwJWhDyD-YsN5lH8F7Zj8YjvE8oB0WoOYo3WcTnMfd4o_cYHanYCBWjsl8AkmaOqFDl51lkSrks_WW4em5iPz9yAx0maeVL9BvzPqRsxHBx_iCycXhU_F83QAmqM4VQcACJQLk6whsSa-b9o5hBveBmRHwL4J92A97bG7B2VKwVSJvSvs47D-a3LKKl2p5lK6Fx8_YyMGqxTlonwyMIDoNnRDLYPaY5lSbErNhJBco3g.BZwSIt3Y5L3yl5wUyQdWyA\",\"expires_in\":3600,\"token_type\":\"Bearer\"}";
+
+  /** The constant ID. */
+  public static final String ID = TOKEN_REQUEST_OBJ.getClientId() + ID_DELIMITER + "KMBL123";
+
+  public static final String USER_ID = "KMBL123";
+
+  /** The constant USER_DETAILS_INACTIVE. */
+  public static final UserDetails USER_DETAILS_INACTIVE =
+      new UserDetails(
+          "KMBL123",
+          "19kungvqs1dmi2q335nfjgta9m",
+          "KMBL123",
+          "abc",
+          1234567890L,
+          "ASDFGHJKLZXCVBNMDFGHJK",
+          "ASDFGHJKLQWERTYUIOPP",
+          "ASDFGHJKLQWERTYUIOPBNM",
+          2345678L,
+          4567890L,
+          SessionStatus.INACTIVE,
+          "19kungvqs1dmi2q335nfjgta9m#ACTIVE",
+          AccountStatus.ACTIVE,
+          "false");
+
+  /** The constant USER_DETAILS_ACTIVE. */
+  public static final UserDetails USER_DETAILS_ACTIVE =
+      new UserDetails(
+          "KMBL123",
+          "19kungvqs1dmi2q335nfjgta9m",
+          "KMBL123",
+          "abc",
+          1234567890L,
+          "ASDFGHJKLZXCVBNMDFGHJK",
+          "ASDFGHJKLQWERTYUIOPP",
+          "ASDFGHJKLQWERTYUIOPBNM",
+          2345678L,
+          4567890L,
+          SessionStatus.ACTIVE,
+          "19kungvqs1dmi2q335nfjgta9m#ACTIVE",
+          AccountStatus.ACTIVE,
+          "false");
+
+  public static final AuthenticatedUserInfo AUTHENTICATED_USERINFO =
+      new AuthenticatedUserInfo(
+          "eyJraWQiOiIrdE5vaUdsTnVJSHdtRXhBUEFMRTVHdlJuQ29JeHk2Tm5cL0s0MGtKa2VjQT0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJlZmY5ODczYi1mYWMzLTRiNmEtOWE2NC0yZGI1Yjg1N2YyZTQiLCJjb2duaXRvOmdyb3VwcyI6WyJYWVoiLCJVU0VSIl0sImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbVwvdXMtZWFzdC0xX2U0ekw0MHA2TiIsInZlcnNpb24iOjIsImNsaWVudF9pZCI6IjE5a3VuZ3ZxczFkbWkycTMzNW5mamd0YTdsIiwib3JpZ2luX2p0aSI6ImY0OWY3OWY2LTA2OTAtNDNmYS04YzUyLTUxZTY2OTMwMDAzOCIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUiLCJhdXRoX3RpbWUiOjE2OTc3MDIxNTcsImV4cCI6MTY5NzcwNTc1NywiaWF0IjoxNjk3NzAyMTU3LCJqdGkiOiJkYjRkODQ1MS04NTk0LTRlZDktYTA4Ni1jNmY0ZmVhNmUwNjQiLCJ1c2VybmFtZSI6ImVmZjk4NzNiLWZhYzMtNGI2YS05YTY0LTJkYjViODU3ZjJlNCJ9.fl-0PSoVvot2YN4uDUHTXls6FzP2PfSy89d-3yabpOKxqIPUv5HBENXAjgUOtIAKLDerKxQ0byeWCUcF8Yku9H-h4D2fsl_f7KXN1ZZ2CQG3XrtXmjLuxnYqYyMRROFuJEn8mY7i0NQpQGkTt5PekC-m_7OJN2Ro0KLwtG1MtmjhZuw-DS8EADo2esXl128cKUZT4bXXm0lwbkF_m6VlAnQnarZFx2v8olxu1A3zrOy8np4ow8xv4b88GZsE1UiF5uU5YsHHyHfXq7yAD-iaND8ZHu8OoMCEeLHS74Tleav5eMJrm-whKDW9wa1i_O3q2NoXCD3H5UNDb-JKhETBrQ",
+          "KMBL123",
+          "abc",
+          "abc@kotak.com",List.of("ADMIN"));
+
+  /** The constant TOKEN_RESPONSE. */
+  public static final AccessTokenAndUserId TOKEN_RESPONSE =
+      new AccessTokenAndUserId(
+          "eyJraWQiOiIrdE5vaUdsTnVJSHdtRXhBUEFMRTVHdlJuQ29JeHk2Tm5cL0s0MGtKa2VjQT0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJlZmY5ODczYi1mYWMzLTRiNmEtOWE2NC0yZGI1Yjg1N2YyZTQiLCJjb2duaXRvOmdyb3VwcyI6WyJYWVoiLCJVU0VSIl0sImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbVwvdXMtZWFzdC0xX2U0ekw0MHA2TiIsInZlcnNpb24iOjIsImNsaWVudF9pZCI6IjE5a3VuZ3ZxczFkbWkycTMzNW5mamd0YTdsIiwib3JpZ2luX2p0aSI6ImY0OWY3OWY2LTA2OTAtNDNmYS04YzUyLTUxZTY2OTMwMDAzOCIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUiLCJhdXRoX3RpbWUiOjE2OTc3MDIxNTcsImV4cCI6MTY5NzcwNTc1NywiaWF0IjoxNjk3NzAyMTU3LCJqdGkiOiJkYjRkODQ1MS04NTk0LTRlZDktYTA4Ni1jNmY0ZmVhNmUwNjQiLCJ1c2VybmFtZSI6ImVmZjk4NzNiLWZhYzMtNGI2YS05YTY0LTJkYjViODU3ZjJlNCJ9.fl-0PSoVvot2YN4uDUHTXls6FzP2PfSy89d-3yabpOKxqIPUv5HBENXAjgUOtIAKLDerKxQ0byeWCUcF8Yku9H-h4D2fsl_f7KXN1ZZ2CQG3XrtXmjLuxnYqYyMRROFuJEn8mY7i0NQpQGkTt5PekC-m_7OJN2Ro0KLwtG1MtmjhZuw-DS8EADo2esXl128cKUZT4bXXm0lwbkF_m6VlAnQnarZFx2v8olxu1A3zrOy8np4ow8xv4b88GZsE1UiF5uU5YsHHyHfXq7yAD-iaND8ZHu8OoMCEeLHS74Tleav5eMJrm-whKDW9wa1i_O3q2NoXCD3H5UNDb-JKhETBrQ",
+          "KMBL123");
+
+  /** The constant ID_TOKEN. */
+  public static final String ID_TOKEN =
+      "eyJraWQiOiIrYmptdzgrbk1MYTRoMHI1S083cEIwZTdmXC9BVkVlRHZwTjVzeU44Y2xObz0iLCJhbGciOiJSUzI1NiJ9.eyJhdF9oYXNoIjoiMnVlLTFGTUQ3QWI1UTc4QkxJUkNqZyIsInN1YiI6ImVmZjk4NzNiLWZhYzMtNGI2YS05YTY0LTJkYjViODU3ZjJlNCIsImNvZ25pdG86Z3JvdXBzIjpbIlhZWiIsIlVTRVIiXSwiZW1haWxfdmVyaWZpZWQiOnRydWUsImN1c3RvbTpjdXN0b21WYXIiOiJYWVoiLCJjb2duaXRvOnByZWZlcnJlZF9yb2xlIjoiYXJuOmF3czppYW06OjAwNDQwNDY0MTg0NTpyb2xlXC9hbXBsaWZ5LWxvZ2luLWxhbWJkYS1iYWViYTgxOSIsImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbVwvdXMtZWFzdC0xX2U0ekw0MHA2TiIsImNvZ25pdG86dXNlcm5hbWUiOiJlZmY5ODczYi1mYWMzLTRiNmEtOWE2NC0yZGI1Yjg1N2YyZTQiLCJvcmlnaW5fanRpIjoiZjQ5Zjc5ZjYtMDY5MC00M2ZhLThjNTItNTFlNjY5MzAwMDM4IiwiY29nbml0bzpyb2xlcyI6WyJhcm46YXdzOmlhbTo6MDA0NDA0NjQxODQ1OnJvbGVcL2FtcGxpZnktbG9naW4tbGFtYmRhLWJhZWJhODE5Il0sImF1ZCI6IjE5a3VuZ3ZxczFkbWkycTMzNW5mamd0YTdsIiwidG9rZW5fdXNlIjoiaWQiLCJhdXRoX3RpbWUiOjE2OTc3MDIxNTcsImV4cCI6MTY5NzcwNTc1NywiaWF0IjoxNjk3NzAyMTU3LCJqdGkiOiJjZDRjYTY5Ny0xODk4LTQ4MGUtYjkxYS04OTBjZTY5OTdiYzAiLCJlbWFpbCI6InNhaGlsLnNlZXdhbEBrb3Rhay5jb20ifQ.YVdceRLc_hblgYVSni2oEj5AU86KjMJHjDHwXnvH-k_1sLRw-azb5ox2A0f7RaQ_WkVEvKp4b1pNTM1SWEkHyVaAVmv7WSb6T4du9dL0qSYmRogWDiY-OKlcDPI74Mp2DmdhaSkG9n3FhNclOBC1dWdaz1A7w-RlLwS6PqFGFf09_aST-eZ-iWAiisNFmkMBKAAKzzBFyjAjyBlJLHAW921fUyBZTR-bfSvnRMLPv73Q6q5VeE59mo0lgEiVZ_W-8Z1NlKOtuKpmLxeXn2SS8X4LF3un-3ztCoDK3fWAIqKA1A_Y_XvoaeEik5gz1d-bl-JztWPJbPhGKbXXqyUJUQ";
+
+  /** The constant TOKEN_DETAIL. */
+  public static final TokensDetail TOKEN_DETAIL =
+      new TokensDetail(
+          "eyJraWQiOiIrdE5vaUdsTnVJSHdtRXhBUEFMRTVHdlJuQ29JeHk2Tm5cL0s0MGtKa2VjQT0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJlZmY5ODczYi1mYWMzLTRiNmEtOWE2NC0yZGI1Yjg1N2YyZTQiLCJjb2duaXRvOmdyb3VwcyI6WyJYWVoiLCJVU0VSIl0sImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbVwvdXMtZWFzdC0xX2U0ekw0MHA2TiIsInZlcnNpb24iOjIsImNsaWVudF9pZCI6IjE5a3VuZ3ZxczFkbWkycTMzNW5mamd0YTdsIiwib3JpZ2luX2p0aSI6ImY0OWY3OWY2LTA2OTAtNDNmYS04YzUyLTUxZTY2OTMwMDAzOCIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUiLCJhdXRoX3RpbWUiOjE2OTc3MDIxNTcsImV4cCI6MTY5NzcwNTc1NywiaWF0IjoxNjk3NzAyMTU3LCJqdGkiOiJkYjRkODQ1MS04NTk0LTRlZDktYTA4Ni1jNmY0ZmVhNmUwNjQiLCJ1c2VybmFtZSI6ImVmZjk4NzNiLWZhYzMtNGI2YS05YTY0LTJkYjViODU3ZjJlNCJ9.fl-0PSoVvot2YN4uDUHTXls6FzP2PfSy89d-3yabpOKxqIPUv5HBENXAjgUOtIAKLDerKxQ0byeWCUcF8Yku9H-h4D2fsl_f7KXN1ZZ2CQG3XrtXmjLuxnYqYyMRROFuJEn8mY7i0NQpQGkTt5PekC-m_7OJN2Ro0KLwtG1MtmjhZuw-DS8EADo2esXl128cKUZT4bXXm0lwbkF_m6VlAnQnarZFx2v8olxu1A3zrOy8np4ow8xv4b88GZsE1UiF5uU5YsHHyHfXq7yAD-iaND8ZHu8OoMCEeLHS74Tleav5eMJrm-whKDW9wa1i_O3q2NoXCD3H5UNDb-JKhETBrQ",
+          "eyJraWQiOiIrYmptdzgrbk1MYTRoMHI1S083cEIwZTdmXC9BVkVlRHZwTjVzeU44Y2xObz0iLCJhbGciOiJSUzI1NiJ9.eyJhdF9oYXNoIjoiMnVlLTFGTUQ3QWI1UTc4QkxJUkNqZyIsInN1YiI6ImVmZjk4NzNiLWZhYzMtNGI2YS05YTY0LTJkYjViODU3ZjJlNCIsImNvZ25pdG86Z3JvdXBzIjpbIlhZWiIsIlVTRVIiXSwiZW1haWxfdmVyaWZpZWQiOnRydWUsImN1c3RvbTpjdXN0b21WYXIiOiJYWVoiLCJjb2duaXRvOnByZWZlcnJlZF9yb2xlIjoiYXJuOmF3czppYW06OjAwNDQwNDY0MTg0NTpyb2xlXC9hbXBsaWZ5LWxvZ2luLWxhbWJkYS1iYWViYTgxOSIsImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbVwvdXMtZWFzdC0xX2U0ekw0MHA2TiIsImNvZ25pdG86dXNlcm5hbWUiOiJlZmY5ODczYi1mYWMzLTRiNmEtOWE2NC0yZGI1Yjg1N2YyZTQiLCJvcmlnaW5fanRpIjoiZjQ5Zjc5ZjYtMDY5MC00M2ZhLThjNTItNTFlNjY5MzAwMDM4IiwiY29nbml0bzpyb2xlcyI6WyJhcm46YXdzOmlhbTo6MDA0NDA0NjQxODQ1OnJvbGVcL2FtcGxpZnktbG9naW4tbGFtYmRhLWJhZWJhODE5Il0sImF1ZCI6IjE5a3VuZ3ZxczFkbWkycTMzNW5mamd0YTdsIiwidG9rZW5fdXNlIjoiaWQiLCJhdXRoX3RpbWUiOjE2OTc3MDIxNTcsImV4cCI6MTY5NzcwNTc1NywiaWF0IjoxNjk3NzAyMTU3LCJqdGkiOiJjZDRjYTY5Ny0xODk4LTQ4MGUtYjkxYS04OTBjZTY5OTdiYzAiLCJlbWFpbCI6InNhaGlsLnNlZXdhbEBrb3Rhay5jb20ifQ.YVdceRLc_hblgYVSni2oEj5AU86KjMJHjDHwXnvH-k_1sLRw-azb5ox2A0f7RaQ_WkVEvKp4b1pNTM1SWEkHyVaAVmv7WSb6T4du9dL0qSYmRogWDiY-OKlcDPI74Mp2DmdhaSkG9n3FhNclOBC1dWdaz1A7w-RlLwS6PqFGFf09_aST-eZ-iWAiisNFmkMBKAAKzzBFyjAjyBlJLHAW921fUyBZTR-bfSvnRMLPv73Q6q5VeE59mo0lgEiVZ_W-8Z1NlKOtuKpmLxeXn2SS8X4LF3un-3ztCoDK3fWAIqKA1A_Y_XvoaeEik5gz1d-bl-JztWPJbPhGKbXXqyUJUQ",
+          "eyJjdHkiOiJKV1QiLCJlbmMiOiJBMjU2R0NNIiwiYWxnIjoiUlNBLU9BRVAifQ.dVQIZlCvfuIjXl0ZuwV_zIyLx6gEFmN1SfWMp4NDk5nniBr-4HRGdKngeXThbqCTIKUlKxijBZD30pxxLSE9T3sx4sdXCOivoEMqIAYlFKl0wQrVfH3oqjEwAffOz-bPRgu83stcdGGuPm98B4rvXL3evoAH6ZBGmEc7y4vjEbj3mgCVX8DY4V4T3riEMsB88halT6TbV-JKgIUTw1N8hPtIxDY5gygYFEP5MM1xYAgulgdNPecI6vKd4Q0CsYO6DI_StbEFsec6eEkqJPpo2mvfIOzrdZGulVQh_kF3-rBO_ZgYnXEIyTRghXzPYa4VqZfPTvQI4TI57yNhqgnS0Q.L7UNCwpw5l13aPRm.w-gE7pOBzMoT7pIwhKByVnFfFo45hutXuhGhvIM0Iz7KtVrQVCxQKPBm6HWVqP5N-CrpSSys7iZitvR8ojX56MQpcicwyZMya-Z3WLSw4jccIW1rf5eTNwZfNyItBZv-g9mq_TIirT0k6VNaPnOX6soWXFwu_lMomZCwfMhUSAJEQHHtZuLMbMbDRFb43n_bQe1oQtn_jA1ES3l6-3mxukJwL_zZ4xfR3cb_Iz5zBH3ppHn_bCpEzQbcBBcH8FP9c2uPu6mVWaQfupQDOESTRF9O1hSMUlwykY8ULAMjV05cgAgVWif7Uel-wq3oE2PDtNgUY263WCKz4T9x5fIZmOHmMcYLiZEWsAe9pUuzS_OOSE-Y2-iJkPJWg8neQHtHqQgQQxYaLOQNFaXfsEjc4fRL8UjJVG1IcEhCPxh7YUyIljUo0A7wy57ZrpNdbg_z3zrFUgJazvweR6J1OJRV6Yj9-EmaJyuy1MWYgUoqOVzlH3h60f7MDmpMk8clqIi45oH2YaEIxowwPZdneR0QLhFbO8BArcZkbQzJcQ5K6kRJmE8UVqNJ1pDiyJoQtyYzqaK3vNXvVqzGyY-fgxm9iis4P5IOjO_U6czYdv4DLVSQ09q8LNpM7j-BE7Upy0sm6JfBpeekmNwC-mKsBY8ZodHqW43NYEb9GpkePSH0f4_0ibaj1AidDBUwAibl4w1a_TjVWcbPSFYHEKML9OeOegeQS2lB-bZzuxx3y4gIAdQXMewrya8LcZHVPlLxd6PeNFkqqv6mYNrj_-SbLTBEwQN0-MZI8ZvbBvS0YiDNhqxHcwuMshrS585K-mfeHAYj1RG21IubiTkecfADrgxUaaEpOqShUM2z6VJwdWnTbmw_ZxwbOa4sKNxGG9lnBNdSmpoqtmkjfb9DZThmteiJ4-n4FB8cHdxLMeFR60GEtAr6g9T3gqnx4OTUuzKgnevE9fAMHovNPevFXsKRyp2m_N-2Nw-z7iSeQOKcLlErzkGHLHE04pX-ZtDxlU9r7FohJ6DOQWsE17QyLvN6je3nkWN50lvSP1fiJa-VUJlKvTOxf6Fj_Q2GBGZ1_McSGKLN9IdvHL5VqnhOQVgNZKG_nLepv5YTYtrm1Kj0YrDxt8Dkipz1Yj-lxuFDnDF6WZhSb2GzikIyIAhC2fDJbDz5y1OOGMYRHVkbmy0ay4PLIgVPgUbrK4Sv_xH0e8fbN0TPl82ypyly4mPikZj5t-lRgE6bZXeu8A.DZuUlBIQvAzvBy6fKkwAlw");
+
+  /** The constant ID_TOKEN_PAYLOAD. */
+  public static final String ID_TOKEN_PAYLOAD = "{\"custom:userId\": \"KMBL23\"}";
+
+  /** The constant USER_ID. */
+  public static final UserInfo USER_INFO = new UserInfo("KMBL123", null, "abc", "abc@kotak.com");
+
+  public static final AccessTokenDetails ACCESS_TOKEN_DETAILS =
+      AccessTokenDetails.builder().roles(List.of("ADMIN")).build();
+
+  /** The constant DORMANT_ACCOUNT_USER_DETAILS. */
+  public static final UserDetails DORMANT_ACCOUNT_USER_DETAILS =
+      new UserDetails(
+          "KMBL123",
+          "19kungvqs1dmi2q335nfjgta9m",
+          "KMBL123",
+          "abc",
+          1234567890L,
+          "ASDFGHJKLZXCVBNMDFGHJK",
+          "ASDFGHJKLQWERTYUIOPP",
+          "ASDFGHJKLQWERTYUIOPBNM",
+          2345678L,
+          4567890L,
+          SessionStatus.ACTIVE,
+          "19kungvqs1dmi2q335nfjgta9m#DORMANT",
+          AccountStatus.DORMANT,
+          "false");
+
+  /** The constant CLIENT_ID. */
+  public static final String CLIENT_ID = "19kungvqs1dmi2q335nfjgta9m";
+
+  /** The constant TOKEN. */
+  public static final String TOKEN =
+      "eyJraWQiOiIrdE5vaUdsTnVJSHdtRXhBUEFMRTVHdlJuQ29JeHk2Tm5cL0s0MGtKa2VjQT0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJlZmY5ODczYi1mYWMzLTRiNmEtOWE2NC0yZGI1Yjg1N2YyZTQiLCJjb2duaXRvOmdyb3VwcyI6WyJYWVoiLCJVU0VSIl0sImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbVwvdXMtZWFzdC0xX2U0ekw0MHA2TiIsInZlcnNpb24iOjIsImNsaWVudF9pZCI6IjE5a3VuZ3ZxczFkbWkycTMzNW5mamd0YTdsIiwib3JpZ2luX2p0aSI6ImY0OWY3OWY2LTA2OTAtNDNmYS04YzUyLTUxZTY2OTMwMDAzOCIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUiLCJhdXRoX3RpbWUiOjE2OTc3MDIxNTcsImV4cCI6MTY5NzcwNTc1NywiaWF0IjoxNjk3NzAyMTU3LCJqdGkiOiJkYjRkODQ1MS04NTk0LTRlZDktYTA4Ni1jNmY0ZmVhNmUwNjQiLCJ1c2VybmFtZSI6ImVmZjk4NzNiLWZhYzMtNGI2YS05YTY0LTJkYjViODU3ZjJlNCJ9.fl-0PSoVvot2YN4uDUHTXls6FzP2PfSy89d-3yabpOKxqIPUv5HBENXAjgUOtIAKLDerKxQ0byeWCUcF8Yku9H-h4D2fsl_f7KXN1ZZ2CQG3XrtXmjLuxnYqYyMRROFuJEn8mY7i0NQpQGkTt5PekC-m_7OJN2Ro0KLwtG1MtmjhZuw-DS8EADo2esXl128cKUZT4bXXm0lwbkF_m6VlAnQnarZFx2v8olxu1A3zrOy8np4ow8xv4b88GZsE1UiF5uU5YsHHyHfXq7yAD-iaND8ZHu8OoMCEeLHS74Tleav5eMJrm-whKDW9wa1i_O3q2NoXCD3H5UNDb-JKhETBrQ.KMBL123";
+
+  /** The constant DOMAIN. */
+  public static final String DOMAIN = "sample-collection.auth.us-east-1.amazoncognito.com";
+
+  /** The constant ACCESS_TOKEN. */
+  public static final String ACCESS_TOKEN =
+      "eyJraWQiOiIrdE5vaUdsTnVJSHdtRXhBUEFMRTVHdlJuQ29JeHk2Tm5cL0s0MGtKa2VjQT0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJlZmY5ODczYi1mYWMzLTRiNmEtOWE2NC0yZGI1Yjg1N2YyZTQiLCJjb2duaXRvOmdyb3VwcyI6WyJYWVoiLCJVU0VSIl0sImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbVwvdXMtZWFzdC0xX2U0ekw0MHA2TiIsInZlcnNpb24iOjIsImNsaWVudF9pZCI6IjE5a3VuZ3ZxczFkbWkycTMzNW5mamd0YTdsIiwib3JpZ2luX2p0aSI6ImY0OWY3OWY2LTA2OTAtNDNmYS04YzUyLTUxZTY2OTMwMDAzOCIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUiLCJhdXRoX3RpbWUiOjE2OTc3MDIxNTcsImV4cCI6MTY5NzcwNTc1NywiaWF0IjoxNjk3NzAyMTU3LCJqdGkiOiJkYjRkODQ1MS04NTk0LTRlZDktYTA4Ni1jNmY0ZmVhNmUwNjQiLCJ1c2VybmFtZSI6ImVmZjk4NzNiLWZhYzMtNGI2YS05YTY0LTJkYjViODU3ZjJlNCJ9.fl-0PSoVvot2YN4uDUHTXls6FzP2PfSy89d-3yabpOKxqIPUv5HBENXAjgUOtIAKLDerKxQ0byeWCUcF8Yku9H-h4D2fsl_f7KXN1ZZ2CQG3XrtXmjLuxnYqYyMRROFuJEn8mY7i0NQpQGkTt5PekC-m_7OJN2Ro0KLwtG1MtmjhZuw-DS8EADo2esXl128cKUZT4bXXm0lwbkF_m6VlAnQnarZFx2v8olxu1A3zrOy8np4ow8xv4b88GZsE1UiF5uU5YsHHyHfXq7yAD-iaND8ZHu8OoMCEeLHS74Tleav5eMJrm-whKDW9wa1i_O3q2NoXCD3H5UNDb-JKhETBrQ";
+
+  /** The constant ENCRYPTED_DATA. */
+  public static final String ENCRYPTED_DATA = "ASDFGHJKLZXCVBNMDFGHJK";
+
+  /** The constant RESPONSE_BODY. */
+  public static final String RESPONSE_BODY =
+      "{\"access_token\": \"eyjrqwertyuiolasdfghjklsdfgjkl.asdfghjklwertyuiozxcvbnm.asdfghjklk1234asdfghjk\", \"id_token\": \"eyjrasdfghjklqwertyuiopzxcvbnm.asdfghjklqwertyuiozxcvbnm.qwertyuioasdfghjklertyui\"}";
+
+  /** The constant REFRESHED_TOKENS_DETAIL. */
+  public static final TokensDetail REFRESHED_TOKENS_DETAIL =
+      new TokensDetail(
+          "eyjrqwertyuiolasdfghjklsdfgjkl.asdfghjklwertyuiozxcvbnm.asdfghjklk1234asdfghjk",
+          "eyjrasdfghjklqwertyuiopzxcvbnm.asdfghjklqwertyuiozxcvbnm.qwertyuioasdfghjklertyui",
+          null);
+
+  /** The constant REFRESH_TOKEN_RESPONSE. */
+  public static final AccessTokenAndUserId REFRESH_TOKEN_RESPONSE =
+      new AccessTokenAndUserId(
+          "eyjrqwertyuiolasdfghjklsdfgjkl.asdfghjklwertyuiozxcvbnm.asdfghjklk1234asdfghjk",
+          "KMBL123");
+}
