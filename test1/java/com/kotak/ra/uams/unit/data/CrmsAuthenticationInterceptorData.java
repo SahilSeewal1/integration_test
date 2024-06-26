@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 /** The type Crms authentication interceptor data. */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CrmsAuthenticationInterceptorData {
-  /** The constant AUTHORIZATION_KEY. */
+  /** The constant AUTHORIZATION. */
   public static final String AUTHORIZATION = "Authorization";
 
   /** The constant INVALID_JWT. */

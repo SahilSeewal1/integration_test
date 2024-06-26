@@ -1,32 +1,23 @@
 package com.kotak.ra.uams.integration.integrationtests.initializer;
 
-import static com.kotak.ra.uams.constant.DbConstants.USER_DETAILS_TABLE_BEAN;
 import static com.kotak.ra.uams.integration.data.UserDetailsData.USER_DETAILS_ACTIVE;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.kotak.ra.uams.entity.UserDetails;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
-import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
+import org.junit.jupiter.api.extension.BeforeAllCallback;
+import org.junit.jupiter.api.extension.ExtensionContext;
 import software.amazon.awssdk.core.SdkBytes;
 import software.amazon.awssdk.services.kms.KmsClient;
 import software.amazon.awssdk.services.kms.model.EncryptRequest;
 
-@Component
-@Log4j2
-public class IntegrationTestInitializer {
+public class IntegrationTestInitializer implements BeforeAllCallback {
+  public static DynamoDBMapper userDetailsMapper;
+  public static KmsClient awsKmsCLient;
 
-  @Autowired
-  @Qualifier(USER_DETAILS_TABLE_BEAN)
-  private DynamoDBMapper userDetailsMapper;
-
-  @Autowired
-  private KmsClient awsKmsCLient;
-
-  public void setupResources() {
+  @Override
+  public void beforeAll(final ExtensionContext context) {
     for (UserDetails userDetails : USER_DETAILS_ACTIVE) {
       userDetails.setAccessToken(encryptData(userDetails.getAccessToken()));
       userDetails.setRefreshToken(encryptData(userDetails.getRefreshToken()));

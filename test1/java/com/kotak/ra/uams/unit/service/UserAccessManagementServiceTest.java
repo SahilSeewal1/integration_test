@@ -8,7 +8,6 @@ import static com.kotak.ra.uams.unit.data.UserAccessManagementServiceData.ACCESS
 import static com.kotak.ra.uams.unit.data.UserAccessManagementServiceData.ACCESS_TOKEN_DETAILS;
 import static com.kotak.ra.uams.unit.data.UserAccessManagementServiceData.AUTHENTICATED_USERINFO;
 import static com.kotak.ra.uams.unit.data.UserAccessManagementServiceData.CLIENT_ID;
-import static com.kotak.ra.uams.unit.data.UserAccessManagementServiceData.CLIENT_ID_LIST;
 import static com.kotak.ra.uams.unit.data.UserAccessManagementServiceData.DOMAIN;
 import static com.kotak.ra.uams.unit.data.UserAccessManagementServiceData.DORMANT_ACCOUNT_USER_DETAILS;
 import static com.kotak.ra.uams.unit.data.UserAccessManagementServiceData.ENCRYPTED_DATA;
@@ -56,7 +55,6 @@ import com.kotak.ra.uams.sao.KeyManagementSao;
 import com.kotak.ra.uams.service.impl.UserAccessManagementServiceImpl;
 import com.kotak.ra.uams.service.impl.UserDetailsServiceImpl;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.Arrays;
 import lombok.extern.log4j.Log4j2;
 import org.apache.http.ParseException;
 import org.junit.jupiter.api.BeforeEach;
@@ -67,7 +65,6 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.mock.web.MockHttpServletResponse;
-import org.springframework.test.util.ReflectionTestUtils;
 
 /** The type User access management service test. */
 @Log4j2
@@ -94,16 +91,14 @@ public class UserAccessManagementServiceTest {
   @MockBean(name = "userDetailsTable")
   private DynamoDBMapper userDetailsMapper;
 
-  /** The User access management service. */
-  @InjectMocks private UserAccessManagementServiceImpl userAccessManagementServiceImpl;
-
   /** Sets . */
   @BeforeEach
   public void setup() {
     MockitoAnnotations.openMocks(this);
-    ReflectionTestUtils.setField(
-        userAccessManagementServiceImpl, CLIENT_ID_LIST, Arrays.asList(CLIENT_ID));
   }
+
+  /** The User access management service. */
+  @InjectMocks private UserAccessManagementServiceImpl userAccessManagementServiceImpl;
 
   /** Successfully fetch access token and user id. */
   @Test

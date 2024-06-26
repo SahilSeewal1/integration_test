@@ -51,7 +51,7 @@ public class AccountDormancyControllerTest {
     assertEquals(
         expected,
         accountDormancyController._getListOfUserAccountDetailsByStatus(
-            ACTIVE_USER_ACCOUNT_REQUEST, REQUEST_ID));
+            REQUEST_ID, ACTIVE_USER_ACCOUNT_REQUEST));
   }
 
   /** Successful fetch dormant user account details test. */
@@ -65,7 +65,7 @@ public class AccountDormancyControllerTest {
     assertEquals(
         expected,
         accountDormancyController._getListOfUserAccountDetailsByStatus(
-            DORMANT_USER_ACCOUNT_REQUEST, REQUEST_ID));
+            REQUEST_ID, DORMANT_USER_ACCOUNT_REQUEST));
   }
 
   /** Successful update account status active test. */
@@ -79,7 +79,7 @@ public class AccountDormancyControllerTest {
     assertEquals(
         expected,
         accountDormancyController._updateUserAccountStatus(
-            UPDATE_USER_ACCOUNT_STATUS_ACTIVE_REQUEST, REQUEST_ID));
+            REQUEST_ID, UPDATE_USER_ACCOUNT_STATUS_ACTIVE_REQUEST));
   }
 
   /** Successful update account status dormant test. */
@@ -93,7 +93,7 @@ public class AccountDormancyControllerTest {
     assertEquals(
         expected,
         accountDormancyController._updateUserAccountStatus(
-            UPDATE_USER_ACCOUNT_STATUS_DORMANT_REQUEST, REQUEST_ID));
+            REQUEST_ID, UPDATE_USER_ACCOUNT_STATUS_DORMANT_REQUEST));
   }
 
   /** Account status already active test. */
@@ -108,7 +108,7 @@ public class AccountDormancyControllerTest {
     assertEquals(
         expected,
         accountDormancyController._updateUserAccountStatus(
-            UPDATE_USER_ACCOUNT_STATUS_ACTIVE_REQUEST, REQUEST_ID));
+            REQUEST_ID, UPDATE_USER_ACCOUNT_STATUS_ACTIVE_REQUEST));
   }
 
   /** Account status already dormant test. */
@@ -123,6 +123,6 @@ public class AccountDormancyControllerTest {
     assertEquals(
         expected,
         accountDormancyController._updateUserAccountStatus(
-            UPDATE_USER_ACCOUNT_STATUS_DORMANT_REQUEST, REQUEST_ID));
+            REQUEST_ID, UPDATE_USER_ACCOUNT_STATUS_DORMANT_REQUEST));
   }
 }

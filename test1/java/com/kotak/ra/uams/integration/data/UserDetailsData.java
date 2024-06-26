@@ -3,16 +3,11 @@ package com.kotak.ra.uams.integration.data;
 import com.kotak.ra.uams.constant.SessionStatus;
 import com.kotak.ra.uams.entity.UserDetails;
 import com.kotak.ra.uams.model.AccountStatus;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
-
 import java.util.Arrays;
 import java.util.List;
 
 /** The type User details data. */
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
-public final class UserDetailsData {
-
+public class UserDetailsData {
   /** The constant USER_DETAILS_ACTIVE. */
   public static final List<UserDetails> USER_DETAILS_ACTIVE =
       Arrays.asList(
@@ -28,8 +23,8 @@ public final class UserDetailsData {
               1686480396L,
               1686450396L,
               SessionStatus.ACTIVE,
-              "19kungvqs1dmi2q335nfjgta9m#DORMANT",
-              AccountStatus.DORMANT,
+              "19kungvqs1dmi2q335nfjgta9m#ACTIVE",
+              AccountStatus.ACTIVE,
               "false"),
           new UserDetails(
               "19kungvqs1dmi2q335nfjgta9m#KMBL890",

@@ -1,13 +1,15 @@
 package com.kotak.ra.uams.integration.constants;
 
-/** The type Header constants. */
-public class HeaderConstants {
-  /** The constant AUTHORIZATION_KEY. */
-  public static final String AUTHORIZATION_KEY = "Authorization";
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
-  /** The constant X_REQUEST_ID_KEY. */
-  public static final String X_REQUEST_ID_KEY = "X-Request-ID";
+/** The type Header constants. */
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+public final class HeaderConstants {
 
   /** The constant X_REQUEST_ID_VALUE. */
   public static final String X_REQUEST_ID_VALUE = "b761d912-f620-4b1f-bb60-4c620c926245";
+
+  /** The constant X_REQUEST_ID_VALUE. */
+  public static final String INVALID_X_REQUEST_ID_VALUE = "b761d912-f620-4b1f-bb60-4c620c926245123";
 }
